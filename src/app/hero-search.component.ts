@@ -24,7 +24,7 @@ export class HeroSearchComponent implements OnInit {
 	private searchTerms = new Subject<string>();
 
 	constructor(
-		private HeroSearchService: HeroSearchService,
+		private heroSearchService: HeroSearchService,
 		private router: Router
 	) {}
 
@@ -39,7 +39,7 @@ export class HeroSearchComponent implements OnInit {
 			.distinctUntilChanged() // ignore if next search term is same as previous
 			.switchMap(term => term // switch to new observable each time the term changes
 			// return the http search observable
-			? this.HeroSearchService.search(term)
+			? this.heroSearchService.search(term)
 			// or the observable of empty heroes if there was no search term
 			: Observable.of<Hero[]>([]))
 			.catch(error => {
